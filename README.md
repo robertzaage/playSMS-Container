@@ -14,7 +14,7 @@ Visit [playSMS](http://playsms.org) website for more information.
 
 First build the container image from this repo:
 ```
-docker build -f Containerfile -t localhost/playsms:1.4.5
+docker build -f Dockerfile -t localhost/playsms:1.4.5
 ```
 
 ## Run
