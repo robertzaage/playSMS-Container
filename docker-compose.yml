@@ -3,7 +3,7 @@ version: '3'
 services:
   playsms-server:
     container_name: playsms-server
-    image: localhost/playsms:1.4.5
+    image: ghcr.io/robertzaage/playsms:master
     environment:
        - DBUSER=playsms
        - DBPASS=playsms
@@ -11,8 +11,8 @@ services:
     ports:
        - 8080:80
     depends_on:
-       - mariadb
-  playsms-datbase:
+       - playsms-database
+  playsms-database:
    container_name: playsms-database
    image: docker.io/mariadb:latest
    environment:
