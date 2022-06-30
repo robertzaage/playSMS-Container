@@ -1,110 +1,44 @@
-docker-playsms
+playSMS Container Image
 ==============
 
-Item            | Info
---------------- | ---------------
-Project update  | 210909
-Project version | 2.2
-playSMS version | 1.4.5
+playSMS version 1.4.5
 
-This project is playSMS docker image project.
-
-playSMS is a Free and Open Source SMS Gateway Software. Not A Free SMS Service.
+This repository contains build files for a simplified and modernized container image of playSMS. 
+playSMS is a free and open source SMS gateway software.
 
 Visit [playSMS](http://playsms.org) website for more information.
 
-
-## Install
-
-Run this for installation, just the first time:
-
-```
-docker run -d -p 2222:22 -p 80:80 playsms/playsms:1.4.5
-```
-	
-Or, run this to bind MySQL database with local `/opt/mysql/lib` instead:
-
-```
-docker run -d -p 2222:22 -p 80:80 -v /opt/mysql/lib:/var/lib/mysql playsms/playsms:1.4.5
-```
-
-Get `<CONTAINER_ID>` of your image:
-
-```
-docker ps -l
-```
-
-Follow logs:
-
-```
-docker logs -f <CONTAINER_ID>
-```
-
-Once `sshd` runs, change the default SSH password, enter container:
-
-```
-ssh -p 2222 root@localhost
-```
-
-And then change `root` password:
-
-```
-passwd root
-```
-
-Change the SSH password **immediately** to your own strong and secure password.
-
-The default SSH password for user `root` is `changemeplease`
-
-
-## Usage
-
-Start your container:
-
-```
-docker start <CONTAINER_ID>
-```
-
-Stop your container:
-
-```
-docker stop <CONTAINER_ID>
-```
-
-Running command inside the container:
-
-```
-docker exec <CONTAINER_ID> <COMMAND>
-```
-
-Example of running command `playsmsd check` on `CONTAINER_ID` `dce344`:
-
-```
-docker exec dce344 playsmsd check
-```
-
-
 ## Build
 
-To build the image `yourname/playsms`, execute the following command on the `docker-playsms` folder:
-
+First build the container image from this repo:
 ```
-docker build -t yourname/playsms .
-```
-
-Push your new image to the docker hub:
-
-```
-docker push yourname/playsms
+docker build -f Containerfile -t localhost/playsms:1.4.5
 ```
 
+## Run
+
+A fully automated application init is done using Docker Compose:
+```
+docker-compose up
+```
+
+Default Port: `8080`
+Default Login: `admin:admin`
+
+## Config
+
+You need to fetch a basic config file by cat into the playsms-server container:
+```
+docker run --rm --entrypoint cat localhost/playsms:1.4.5 /var/www/html/config.php > config.php
+```
+
+Throw an additional volume into the playsms container after tweaking your newly obtained config file:
+```
+config.php:/var/www/html/config.php:ro
+```
 
 ## Maintainer
 
-- Anton Raharja <araharja@protonmail.com>
+- [Robert Zaage](https://zaage.it)
 
-
-## References
-
-- https://github.com/tutumcloud/tutum-docker-lamp
-- https://github.com/tutumcloud/tutum-docker-wordpress
+That's all!

@@ -3,8 +3,9 @@ machine:
     - docker
 dependencies:
   override:
-    - docker build -t playsms .
+    - docker -f Containerfile build -t playsms:1.4.5 .
 test:
   override:
-    - docker run -d -p 10022:22 -p 10080:80 -p 13306:3306 playsms; sleep 30
-    - curl --retry 10 --retry-delay 5 -L -I --insecure http://localhost:10080 | grep "200 OK"
+    - docker run --detach --publish 3306:3306 docker.io/mariadb:latest
+    - docker run --detach --publish 8080:80 localhost/playsms:1.4.5; sleep 30
+    - curl -ILs http://localhost:8080 | grep "200 OK"

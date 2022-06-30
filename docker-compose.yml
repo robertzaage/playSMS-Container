@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  playsms-server:
+    container_name: playsms-server
+    image: localhost/playsms:1.4.5
+    environment:
+       - DBUSER=playsms
+       - DBPASS=playsms
+       - DBNAME=playsms
+    ports:
+       - 8080:80
+    depends_on:
+       - mariadb
+  playsms-datbase:
+   container_name: playsms-database
+   image: docker.io/mariadb:latest
+   environment:
+       - MARIADB_DATABASE=playsms
+       - MARIADB_USER=playsms
+       - MARIADB_ROOT_PASSWORD=playsms
+       - MARIADB_PASSWORD=playsms
+   volumes:
+      - /var/docker/playsms/database:/var/lib/mysql:rw
