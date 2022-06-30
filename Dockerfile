@@ -47,4 +47,6 @@ RUN mkdir /app \
     && mkdir -p /var/log/playsms \
     && chmod +x /run.sh
 
+HEALTHCHECK --interval=5s --timeout=3s CMD curl --fail http://localhost/index.php || exit 1
+
 CMD ["/run.sh"]
