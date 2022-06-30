@@ -26,6 +26,8 @@ RUN apt update -y \
 
 COPY --from=docker.io/composer:latest /usr/bin/composer /usr/local/bin/composer
 
+ADD run.sh /run.sh
+
 # playSMS
 RUN mkdir /app \
     && git clone --branch 1.4.5 --depth=1 https://github.com/playsms/playsms.git /app \
@@ -42,8 +44,7 @@ RUN mkdir /app \
     && echo "PLAYSMS_LOG=\"/var/log/playsms\"" >> /etc/playsmsd.conf \
     && echo "DAEMON_SLEEP=\"1\""               >> /etc/playsmsd.conf \
     && echo "ERROR_REPORTING=\"E_ALL ^ (E_NOTICE | E_WARNING)\"" >> /etc/playsmsd.conf \
-    && mkdir -p /var/log/playsms
-
-ADD run.sh /run.sh
+    && mkdir -p /var/log/playsms \
+    && chmod +x /run.sh
 
 CMD ["/run.sh"]
