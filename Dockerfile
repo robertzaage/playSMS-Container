@@ -24,7 +24,7 @@ RUN apt update -y \
                                          pdo_mysql \
     && ln -s /usr/local/bin/php /usr/bin/php
 
-COPY --from=docker.io/composer:latest /usr/bin/composer /usr/local/bin/composer
+COPY --from=docker.io/composer:2.3.7 /usr/bin/composer /usr/local/bin/composer
 
 ADD run.sh /run.sh
 
