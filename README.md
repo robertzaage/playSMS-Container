@@ -42,5 +42,3 @@ config.php:/var/www/html/config.php:ro
 ## Maintainer
 
 [Robert Zaage](https://zaage.it)
-
-That's all!
