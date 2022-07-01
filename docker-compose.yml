@@ -21,4 +21,6 @@ services:
        - MARIADB_ROOT_PASSWORD=playsms
        - MARIADB_PASSWORD=playsms
    volumes:
-      - /var/docker/playsms/database:/var/lib/mysql:rw
+      - ~/playsms/database:/var/lib/mysql:rw
+   ports:
+      - 3306:3306
