@@ -14,5 +14,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Run tests
-      run: docker-compose up
+    - name: Start services
+      run: docker-compose up -d
+      
+    - name: Healthcheck
+      run: docker-compose run playsms-server playsmsd status
+      
+    - name: Stop services
+      run: docker-compose stop
