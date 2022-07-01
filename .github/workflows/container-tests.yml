@@ -5,7 +5,7 @@ on:
 
 jobs:
   test:
-    name: Run test suite
+    name: Tests
     runs-on: ubuntu-latest
     env:
       COMPOSE_FILE: docker-compose.yml
