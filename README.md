@@ -4,6 +4,7 @@ playSMS Container Image
 playSMS version 1.4.5
 
 [![Docker](https://github.com/robertzaage/playsms-container/actions/workflows/docker-publish.yml/badge.svg?branch=master)](https://github.com/robertzaage/playsms-container/actions/workflows/docker-publish.yml)
+[![Container Tests](https://github.com/robertzaage/playSMS-Container/actions/workflows/container-tests.yml/badge.svg)](https://github.com/robertzaage/playSMS-Container/actions/workflows/container-tests.yml)
 
 This repository contains build files for a simplified and modernized container image of playSMS. 
 playSMS is a free and open source SMS gateway software.
